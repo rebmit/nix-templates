@@ -1,3 +1,5 @@
+# Portions of this file are sourced from
+# https://github.com/pyproject-nix/pyproject.nix/blob/d6c61dbe0be75e2f4cf0efcdc62428175be4cfb5/templates/impure/flake.nix (MIT License)
 {
   perSystem =
     { lib, pkgs, ... }:

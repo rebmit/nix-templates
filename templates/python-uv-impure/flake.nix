@@ -2,10 +2,12 @@
   description = "an impure Python project using uv";
 
   inputs = {
-    rebmit.url = "github:rebmit/nix-exprs";
-    flake-parts.follows = "rebmit/flake-parts";
-    nixpkgs.follows = "rebmit/nixpkgs";
-    import-tree.follows = "rebmit/import-tree";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    nixpkgs.url = "github:rebmit/nixpkgs/nixos-unstable";
+    import-tree.url = "github:vic/import-tree";
   };
 
   outputs =
