@@ -1,0 +1,95 @@
+{
+  "nodes": {
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "rebmit",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763759067,
+        "narHash": "sha256-LlLt2Jo/gMNYAwOgdRQBrsRoOz7BPRkzvNaI/fzXi2Q=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "2cccadc7357c0ba201788ae99c4dfa90728ef5e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1763762820,
+        "narHash": "sha256-ZvYKbFib3AEwiNMLsejb/CWs/OL/srFQ8AogkebEPF0=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "3c23749d8013ec6daa1d7255057590e9ca726646",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1763867050,
+        "narHash": "sha256-iqdJFW/moJyDYxBjyz4onzpSZoTHq+VSX2+xpoiwesQ=",
+        "owner": "rebmit",
+        "repo": "nixpkgs",
+        "rev": "7df42fec1a90583734eb82e22ec7546f07cc79a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rebmit",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "rebmit": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "import-tree": "import-tree",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1763985893,
+        "narHash": "sha256-Ko7tz5N/7jIoWIZxB1vnWXPMp7eIdbVTtag3Wrd9TnA=",
+        "owner": "rebmit",
+        "repo": "nix-exprs",
+        "rev": "5c49f6bead0572ab124b51e5028a68bdcdd01cbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rebmit",
+        "repo": "nix-exprs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-parts": [
+          "rebmit",
+          "flake-parts"
+        ],
+        "import-tree": [
+          "rebmit",
+          "import-tree"
+        ],
+        "nixpkgs": [
+          "rebmit",
+          "nixpkgs"
+        ],
+        "rebmit": "rebmit"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
