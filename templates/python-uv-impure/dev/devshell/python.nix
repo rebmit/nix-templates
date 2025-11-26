@@ -1,28 +1,35 @@
 # Portions of this file are sourced from
 # https://github.com/pyproject-nix/pyproject.nix/blob/d6c61dbe0be75e2f4cf0efcdc62428175be4cfb5/templates/impure/flake.nix (MIT License)
+# https://github.com/cachix/devenv/blob/95d531cff33ce91cb028e3659f616c3ca3e99073/src/modules/languages/python/default.nix (Apache License 2.0)
+{ ... }:
 {
   perSystem =
     { lib, pkgs, ... }:
+    let
+      libraries = pkgs.pythonManylinuxPackages.manylinux1 ++ [ pkgs.stdenv.cc.cc.lib ];
+
+      makeWrapperArgs = [
+        "--prefix"
+        "LD_LIBRARY_PATH"
+        ":"
+        (lib.makeLibraryPath libraries)
+      ];
+
+      appendLibraries =
+        drv:
+        drv.buildEnv.override (args: {
+          inherit makeWrapperArgs;
+        });
+    in
     {
       devshells.default = {
         commands = map (cmd: cmd // { category = "python"; }) [
-          { package = pkgs.python3; }
+          { package = appendLibraries pkgs.python3; }
           { package = pkgs.uv; }
           { package = pkgs.ty; }
         ];
-        env = [
-          {
-            name = "PYTHONPATH";
-            unset = true;
-          }
-        ]
-        ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-          {
-            name = "LD_LIBRARY_PATH";
-            value = lib.makeLibraryPath pkgs.pythonManylinuxPackages.manylinux1;
-          }
-        ];
         devshell.startup.uv.text = ''
+          unset PYTHONPATH
           uv sync
           . .venv/bin/activate
         '';
