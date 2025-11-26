@@ -8,6 +8,7 @@
         commands = map (cmd: cmd // { category = "python"; }) [
           { package = pkgs.python3; }
           { package = pkgs.uv; }
+          { package = pkgs.ty; }
         ];
         env = [
           {

@@ -20,6 +20,14 @@ in
           shfmt.enable = true;
           # keep-sorted end
         };
+        settings = {
+          global.excludes = [
+            ".direnv/**"
+            ".ruff_cache/**"
+            "__pycache__/**"
+            ".venv/**"
+          ];
+        };
       };
 
       pre-commit.settings.hooks.treefmt = {
