@@ -4,7 +4,10 @@
   perSystem =
     { lib, pkgs, ... }:
     let
-      libraries = pkgs.pythonManylinuxPackages.manylinux1 ++ [ pkgs.stdenv.cc.cc.lib ];
+      libraries = pkgs.pythonManylinuxPackages.manylinux1 ++ [
+        pkgs.zstd
+        pkgs.stdenv.cc.cc.lib
+      ];
 
       makeWrapperArgs = [
         "--prefix"
