@@ -4,7 +4,7 @@
   perSystem =
     { lib, pkgs, ... }:
     let
-      libraries = pkgs.pythonManylinuxPackages.manylinux1 ++ [
+      libraries = pkgs.pythonManylinuxPackages.manylinux2014 ++ [
         pkgs.zstd
         pkgs.stdenv.cc.cc.lib
       ];
