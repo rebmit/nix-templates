@@ -27,6 +27,12 @@
           { package = pkgs.uv; }
           { package = pkgs.ty; }
         ];
+        env = [
+          {
+            name = "UV_LINK_MODE";
+            value = "clone";
+          }
+        ];
         devshell.startup.uv.text = ''
           unset PYTHONPATH
           uv sync
