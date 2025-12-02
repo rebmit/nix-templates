@@ -23,6 +23,10 @@
         drv.buildEnv.override (args: {
           inherit makeWrapperArgs;
         });
+
+      impureLibraryPatterns = [
+        "libcuda\\.so.*$"
+      ];
     in
     {
       devshells.default = {
@@ -40,6 +44,13 @@
         devshell.startup.uv.text = ''
           unset PYTHONPATH
           uv sync
+          python3 "$PRJ_ROOT/dev/scripts/setup-impure-libs.py" --target-dir "$PRJ_ROOT/.impure-env/lib" ${
+            lib.concatMapStringsSep " " (p: "--pattern \"${p}\"") impureLibraryPatterns
+          }
+          case ":$LD_LIBRARY_PATH:" in
+            *":$PRJ_ROOT/.impure-env/lib:"*) ;;
+            *) export LD_LIBRARY_PATH="$PRJ_ROOT/.impure-env/lib''${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH" ;;
+          esac
           . .venv/bin/activate
         '';
       };
