@@ -29,10 +29,6 @@
         ];
         env = [
           {
-            name = "UV_LINK_MODE";
-            value = "clone";
-          }
-          {
             name = "UV_PYTHON_PREFERENCE";
             value = "only-system";
           }
